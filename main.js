@@ -26,10 +26,20 @@ function initAnimations() {
     const educationSection = document.querySelector('#education');
     addAnimation(educationSection, 'animate__fadeInLeft', 200);
 
+    // About Section Animation
+    const aboutSection = document.querySelector('#about');
+    addAnimation(aboutSection, 'animate__fadeInRight', 300);
+
     // Skills Section Animations
     const skillCards = document.querySelectorAll('#skills .skills-card');
     skillCards.forEach((card, index) => {
         addAnimation(card, 'animate__flipInX', 200 * index);
+    });
+
+    // Projects Section Animations (for cards already in DOM)
+    const projectCards = document.querySelectorAll('#projects .card');
+    projectCards.forEach((card, idx) => {
+        addAnimation(card, 'animate__fadeInUp', 300 * idx);
     });
 
     // Contact Section Animation

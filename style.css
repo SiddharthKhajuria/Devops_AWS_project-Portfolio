@@ -1,99 +1,479 @@
-/* General Reset */
+/* ------------------------------------------------------------------
+   Variables & Theme Definitions
+   ------------------------------------------------------------------ */
+:root {
+    /* single cohesive theme: vibrant blue with soft white and subtle gray */
+    --primary-color: #007bff;
+    --primary-dark: #0056b3;
+    --text-color: #212529;
+    --bg-color: #ffffff;
+    --header-height: 80px;
+    --transition: 0.3s ease;
+}
+
+/* apply tiled svg pattern to full page background */
+body {
+    background-image: url('assets/pattern.svg');
+    background-repeat: repeat;
+    background-size: 60px 60px;
+}
+
+/* subtle stripe + dots pattern inside sections (very light) */
+.section-pattern {
+    background-image:
+        url('assets/pattern.svg'),
+        repeating-linear-gradient(45deg,
+            rgba(255,255,255,0.97) 0,
+            rgba(255,255,255,0.97) 8px,
+            rgba(240,240,240,0.97) 8px,
+            rgba(240,240,240,0.97) 16px);
+    background-size: auto, 16px 16px;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    transition: background-color var(--transition), color var(--transition);
+}
+
+
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body Styling */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #3f6388; /* Light background */
-    color: #333; /* Dark text for readability */
-    line-height: 1.6;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth theme transitions */
-}
-
-body.light-theme {
-    background-color: #f4f4f9;
-    color: #111;
-}
-
-/* Fixed and Large Header */
-header .navbar {
-    position: fixed; /* Makes the header fixed at the top */
+/* ------------------------------------------------------------------
+   Header / Navbar
+   ------------------------------------------------------------------ */
+.navbar {
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000; /* Ensures it stays above other elements */
-    height: 80px; /* Increases the height for a larger header */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-    transition: background-color 0.3s ease; /* Smooth transition for background */
+    height: var(--header-height);
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    transition: background-color var(--transition);
 }
 
-/* Navbar Brand Styling */
-header .navbar-brand {
-    font-size: 2rem; /* Larger font size for the brand name */
-    font-weight: 700; /* Bold font weight */
-    color: #00B5E2;
+
+.navbar-brand {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--primary-dark);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-header .navbar-brand:hover {
-    color: #009FB8;
-    text-decoration: none;
+.navbar-brand:hover {
+    color: var(--primary-dark);
 }
 
-/* Navbar Links Styling */
-header .navbar-nav .nav-link {
-    font-size: 1.2rem; /* Larger font size for links */
-    margin-right: 15px; /* Adds spacing between links */
-    color: white; /* Link color */
-    transition: color 0.3s ease;
+.nav-link {
+    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-right: 1rem;
+    transition: color var(--transition);
 }
 
-header .navbar-nav .nav-link:hover {
-    color: #00B5E2; /* Highlighted color on hover */
+
+.nav-link:hover {
+    color: var(--primary-dark);
 }
 
-/* Hero Section */
-.hero {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('hero-bg.jpg') no-repeat center center/cover;
+.nav-link.active {
+    color: var(--primary-color) !important;
+    font-weight: 600;
+}
+
+/* ------------------------------------------------------------------
+   Preloader
+   ------------------------------------------------------------------ */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    transition: opacity 0.5s ease;
+}
+#preloader.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* ------------------------------------------------------------------
+   Hero Section
+   ------------------------------------------------------------------ */
+#hero {
+    background: url('hero-bg.jpg') no-repeat center center/cover;
+    background-size: cover;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
-    text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.7);
+    position: relative;
+    color: #fff;
+    text-align: left;
+    padding: 0 2rem;
 }
 
-.hero .container {
+#hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(4px);
+}
+
+#hero .hero-content {
+    position: relative;
+    max-width: 800px;
+    z-index: 2;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(6px);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+/* about section revamp */
+#about {
+    position: relative;
+    overflow: hidden;
+    background: url('background.jpg') center/cover no-repeat;
+    background-position: center center;
+    min-height: 120vh; /* increased even more for maximum background exposure */
+    color: #fff;
+}
+#about::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    z-index: 1;
+}
+#about .container {
     position: relative;
     z-index: 2;
+}
+#about .about-content {
+    padding: 3rem;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(6px);
+    border-radius: 1rem;
+    color: #fff;
+}
+/* hide any leftover img tags */
+#about img { display: none !important; }
+
+/* blur circles decorative */
+#about .blur-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.4;
+    z-index: 1;
+}
+#about .blur-circle.a { width: 200px; height: 200px; background: rgba(0,123,255,0.3); top: -30px; right: -30px; }
+#about .blur-circle.b { width: 150px; height: 150px; background: rgba(0,123,255,0.3); bottom: -20px; left: -20px; }
+
+#hero img.hero-img {
+    width: 350px;
+    max-width: 40%;
+    border-radius: 10px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+}
+
+@media (min-width: 992px) {
+    #hero {
+        flex-direction: row;
+        padding: 0 4rem;
+    }
+    #hero .hero-content {
+        flex: 1;
+    }
+    #hero img.hero-img {
+        margin-right: 3rem;
+    }
+}
+
+#hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+#hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+#hero h1 {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+#hero h2 {
+    font-size: 2rem;
+    margin-top: 0.5rem;
+}
+
+#hero p {
+    max-width: 700px;
+    margin: 1rem auto 2rem;
+    font-size: 1.15rem;
+}
+
+#hero .btn {
+    min-width: 150px;
+}
+
+
+/* ------------------------------------------------------------------
+   Section Titles & Utilities
+   ------------------------------------------------------------------ */
+section {
+    padding: 5rem 0;
+}
+
+/* decorative blurred circles */
+.blur-circle {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.6;
+    z-index: 1;
+}
+.blur-circle.one { width: 300px; height: 300px; background: rgba(0,123,255,0.4); top: -50px; left: -50px; }
+.blur-circle.two { width: 200px; height: 200px; background: rgba(0,123,255,0.4); bottom: -50px; right: -50px; }
+
+.page-header {
+    background-size: cover;
+    background-position: center;
+}
+
+.page-header.education { background-image: url('assets/edu-bg.jpg'); }
+.page-header.skills { background-image: url('assets/skills-bg.jpg'); }
+.page-header.projects { background-image: url('assets/projects-bg.jpg'); }
+
+section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    position: relative;
+}
+
+section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary-color);
+    margin: 0.5rem auto 0;
+}
+
+.text-center {
     text-align: center;
 }
 
-.hero .content h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    animation: fadeInDown 1s ease;
+/* ------------------------------------------------------------------
+   Education (dark mode panel)
+   ------------------------------------------------------------------ */
+#education {
+    background-color: var(--primary-dark);
+    color: #fff;
 }
 
-.hero .content h2 {
-    font-size: 2.2rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-    animation: fadeInUp 1.2s ease;
+/* ------------------------------------------------------------------
+   About Section
+   ------------------------------------------------------------------ */
+#about img.about-img {
+    width: 200px;
+    border-radius: 50%;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-.hero .content p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    max-width: 800px;
-    margin: auto;
-    animation: fadeIn 1.5s ease;
+#about p {
+    color: #fff;
+    font-size: 1.15rem;
+    line-height: 1.6;
 }
 
-/* More CSS sections follow the same enhancements structure */
+/* filter buttons for portfolio */
+.filter-btn {
+    margin: 0 0.25rem;
+}
+.filter-btn.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* ------------------------------------------------------------------
+   Footer social icons
+   ------------------------------------------------------------------ */
+footer .social-icons a {
+    color: var(--primary-color);
+    margin: 0 0.5rem;
+    transition: color var(--transition);
+}
+footer .social-icons a:hover {
+    color: var(--primary-dark);
+}
+
+
+#education ul {
+    list-style: none;
+    margin-top: 2rem;
+}
+
+#education li {
+    margin-bottom: 1rem;
+}
+
+/* ------------------------------------------------------------------
+   Skills
+   ------------------------------------------------------------------ */
+.skills-card {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2rem 1rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.skills-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.15);
+}
+
+.skills-card i {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* ------------------------------------------------------------------
+   Projects / Portfolio
+   ------------------------------------------------------------------ */
+.projects .card {
+    border: none;
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.projects .card img {
+    height: 200px;
+    object-fit: cover;
+}
+
+.projects .card-body {
+    padding: 1.5rem;
+}
+
+.projects .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+/* ------------------------------------------------------------------
+   Contact Form
+   ------------------------------------------------------------------ */
+#contact form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+#contact input,
+#contact textarea {
+    border-radius: 0.5rem;
+}
+
+/* ------------------------------------------------------------------
+   Footer & Utilities
+   ------------------------------------------------------------------ */
+footer {
+    background: #222;
+    color: #fff;
+    padding: 2rem 0;
+}
+
+footer a {
+    color: var(--primary-color);
+}
+
+#scrollToTop {
+    opacity: 0;
+    visibility: hidden;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 1.25rem;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 0.75rem;
+    border-radius: 50%;
+    transition: opacity var(--transition), transform var(--transition);
+}
+
+#scrollToTop.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#scrollToTop:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px);
+}
+
+/* ------------------------------------------------------------------
+   Animations helper
+   ------------------------------------------------------------------ */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ------------------------------------------------------------------
+   Media Queries
+   ------------------------------------------------------------------ */
+@media (max-width: 768px) {
+    #hero h1 { font-size: 2.5rem; }
+    #hero h2 { font-size: 1.5rem; }
+}
+
+/* Hero bottom wave */
+.hero-wave {
+    position: relative;
+    margin-top: -5px; /* overlap slightly */
+}
+/* Force About Me text to white */
+#about .about-content h2,
+#about .about-content h2 * ,
+#about .about-content p,
+#about .about-content p * {
+    color: #fff !important;
+}
+#about .about-content h2 {
+    color: #fff !important;
+}

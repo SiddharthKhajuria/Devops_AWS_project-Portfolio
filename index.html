@@ -12,135 +12,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
     <!-- Animation Library -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <style>
-        /* Global Styles */
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #444;
-            background-color: #f8f9fa;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-        .navbar {
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Hero Section */
-        #hero {
-            background: linear-gradient(to right, #6a11cb, #2575fc);
-            color: white;
-            text-align: center;
-            padding: 100px 15px;
-        }
-
-        #hero h1 {
-            font-size: 3rem;
-        }
-
-        #hero p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        #hero img {
-            max-width: 150px;
-            margin-top: 20px;
-            border-radius: 50%;
-            border: 4px solid #fff;
-        }
-
-        /* Section Titles */
-        section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        /* Education Section */
-        #education {
-            background-color: #333;
-            color: white;
-        }
-
-        #education ul li {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-
-        /* Skills Section */
-        #skills .skills-card {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 10px;
-            text-align: center;
-            background: white;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        #skills .skills-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        #skills .skills-card i {
-            font-size: 3rem;
-            color: #2575fc;
-        }
-
-        /* Contact Section */
-        #contact a {
-            color: #2575fc;
-        }
-
-        #contact form {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            animation: fadeInUp 1s;
-        }
-
-        /* Footer */
-        footer {
-            background: #222;
-            color: white;
-        }
-
-        footer a {
-            color: #2575fc;
-        }
-
-        #scrollToTop {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 99;
-            font-size: 18px;
-            background: #2575fc;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 50%;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: opacity 0.3s ease;
-        }
-
-        #scrollToTop:hover {
-            background: #6a11cb;
-        }
-    </style>
 </head>
 
-<body>
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="80" tabindex="0">
+    <!-- preloader overlay -->
+    <div id="preloader">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
     <header>
         <!-- Navigation Bar -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top py-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top py-3">
             <div class="container">
                 <a class="navbar-brand fs-3 fw-bold" href="#">Siddharth Khajuria</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -148,11 +31,11 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="education.html">Education</a></li>
+                        <li class="nav-item"><a class="nav-link" href="skills.html">Skills</a></li>
+                        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
                         <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                        <li class="nav-item"><a class="nav-link theme-toggle" href="#">Toggle Theme</a></li>
                     </ul>
                 </div>
             </div>
@@ -161,63 +44,52 @@
 
     <main>
         <!-- Hero Section -->
-        <section id="hero" class="hero d-flex align-items-center">
-            <div class="container animate__animated animate__fadeInDown">
+        <section id="hero" class="hero animate__animated animate__fadeIn">
+            <div class="blur-circle one"></div>
+            <div class="blur-circle two"></div>
+            <img src="Sid.jpg" alt="Siddharth Khajuria" class="hero-img animate__animated animate__zoomIn">
+            <div class="hero-content animate__animated animate__fadeInRight">
                 <h1 class="fw-bold">Siddharth Khajuria</h1>
-                <h2 class="fw-bold text-info">DevOps Engineer</h2>
+                <h2 class="fw-bold text-primary">DevOps Engineer</h2>
                 <p class="lead">
                     Passionate about building scalable infrastructure, optimizing cloud environments, and implementing seamless CI/CD pipelines.
                 </p>
-                <div class="d-flex justify-content-center gap-3">
-                    <a href="Siddharth__Resume.pdf" class="btn btn-info px-4 text-white" download="Siddharth_Khajuria_Resume.pdf">Download CV</a>
-                    <a href="#contact" class="btn btn-outline-info px-4">Contact Me</a>
+                <div class="d-flex gap-3">
+                    <a href="Siddharth__Resume.pdf" class="btn btn-primary px-4 text-white" download="Siddharth_Khajuria_Resume.pdf">Download CV</a>
+                    <a href="#contact" class="btn btn-outline-primary px-4">Contact Me</a>
                 </div>
-                <img src="Sid.jpg" alt="Siddharth Khajuria" class="rounded-circle img-fluid border border-info border-4 shadow mt-4 animate__animated animate__zoomIn">
             </div>
         </section>
 
-        <!-- Education Section -->
-        <section id="education" class="education text-center py-5">
-            <div class="container animate__animated animate__fadeInLeft">
-                <h2 class="fw-bold mb-4">Education</h2>
-                <p class="lead">My academic background:</p>
-                <ul class="list-unstyled mt-3">
-                    <li><strong>Algoma University, Canada</strong> – PG Certificate in Project Management <span class="text-muted">(Sep 2022 – Apr 2024)</span></li>
-                    <li><strong>Punjab Technical University, India</strong> – Bachelor in Information Technology <span class="text-muted">(Jun 2015 – Jul 2018)</span></li>
-                </ul>
-            </div>
-        </section>
+        <!-- About Section -->
+        <section id="about" class="about py-5">
+            <!-- blur decoration -->
+            <div class="blur-circle a"></div>
+            <div class="blur-circle b"></div>
+            <div class="container animate-on-scroll">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 text-center">
+                        <div class="about-content">
+                            <h2 class="fw-bold mb-3">About Me</h2>
+                            <p class="lead">I’m a DevOps enthusiast working as a Cloud Engineer, passionate about designing scalable, reliable, and automated cloud infrastructure. I have extensive hands-on experience with <b>AWS services including EC2, S3, IAM, VPC, RDS, CloudWatch, and EKS,</b> building secure and highly available cloud environments.
+My experience spans across modern DevOps tools and practices such as <b>Docker, Kubernetes, Jenkins, GitHub Actions, Terraform, Ansible, Linux, and Bash</b> scripting, along with Prometheus and Grafana for monitoring and observability<br><br>
 
-        <!-- Skills Section -->
-        <section id="skills" class="skills py-5">
-            <div class="container">
-                <h2 class="text-center fw-bold mb-4 animate__animated animate__fadeInRight">Technologies & Tools</h2>
-                <div id="skills-container" class="row justify-content-center">
-                    <div class="col-md-3 skills-card animate__animated animate__flipInX">
-                        <i class="bi bi-code-slash"></i>
-                        <h4>Development</h4>
-                        <p>HTML, CSS, JavaScript</p>
-                    </div>
-                    <div class="col-md-3 skills-card animate__animated animate__flipInX">
-                        <i class="bi bi-cloud"></i>
-                        <h4>Cloud</h4>
-                        <p>AWS, Azure</p>
-                    </div>
-                    <div class="col-md-3 skills-card animate__animated animate__flipInX">
-                        <i class="bi bi-diagram-3"></i>
-                        <h4>CI/CD</h4>
-                        <p>Jenkins, GitHub Actions</p>
+As a Cloud Engineer, I work on provisioning and managing infrastructure using <b>Infrastructure as Code (Terraform & Ansible)</b>, configuring and securing cloud networks <b>(VPCs, subnets, routing, security groups),</B> implementing CI/CD pipelines, containerizing applications, orchestrating workloads with Kubernetes, and ensuring high availability and fault tolerance across environments.<br><br>
+
+I have exposure to cloud architecture design, IAM and security best practices, cost optimization, logging and monitoring strategies, system troubleshooting, performance tuning, backup and disaster recovery planning, and production environment support. I focus on automation, reducing manual intervention, and building resilient, production-ready systems that follow DevOps principles.<br><br>
+</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="contact text-center py-5">
+        <section id="contact" class="contact text-center py-5 section-pattern">
             <div class="container animate__animated animate__fadeInUp">
                 <h2 class="fw-bold mb-4">Contact Me</h2>
-                <p>Email: <a href="mailto:siddharthkhajuria@gmail.com" class="text-info">siddharthkhajuria@gmail.com</a></p>
-                <p>Phone: <a href="tel:+14379724226" class="text-info">+1 (437) 972-4226</a></p>
+                <p>Email: <a href="mailto:siddharthkhajuria@gmail.com" class="text-primary">siddharthkhajuria@gmail.com</a></p>
+                <p>Phone: <a href="tel:+14379724226" class="text-primary">+1 (437) 972-4226</a></p>
                 <form id="contactForm" class="mx-auto mt-4" style="max-width: 500px;">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
@@ -235,16 +107,23 @@
                 </form>
             </div>
         </section>
+
     </main>
 
     <footer class="text-center py-3 animate__animated animate__fadeInUp">
+        <div class="social-icons mb-2">
+            <a href="https://github.com/" target="_blank" rel="noopener" class=""><i class="bi bi-github fs-4"></i></a>
+            <a href="https://linkedin.com/" target="_blank" rel="noopener" class=""><i class="bi bi-linkedin fs-4"></i></a>
+            <a href="https://twitter.com/" target="_blank" rel="noopener" class=""><i class="bi bi-twitter fs-4"></i></a>
+        </div>
         <p>&copy; 2024 Siddharth Khajuria. All Rights Reserved.</p>
-        <a href="#" id="scrollToTop" class="btn btn-info">↑ Top</a>
+        <a href="#" id="scrollToTop" class="btn btn-primary">↑ Top</a>
     </footer>
 
     <!-- JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="animations.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
